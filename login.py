@@ -5,16 +5,15 @@ from PIL import ImageTk
 
 class Login:
 
-    def __init__(self,root):
-        self.root=root
+    def __init__(self,Frame1):
+        self.Frame1=Frame1
         self.islog=False
-
+        Frame1.grid(row=0, column=0, sticky="nsew")
         #Setup background Image
         self.bg=ImageTk.PhotoImage(file="images/im2.jpeg")
-        self.bg_img=Label(self.root,image=self.bg).place(x=0,y=0,relwidth=1,relheight=1)
-
+        self.bg_img=Label(self.Frame1,image=self.bg).place(x=0,y=0,relwidth=1,relheight=1)
         #Setup Login Frame
-        Frame_Login=Frame(self.root,bg="#FFFDD0",highlightbackground="black",highlightthickness=5).place(x=200,y=150,height=400,width=500)
+        Frame_Login=Frame(self.Frame1,bg="#FFFDD0",highlightbackground="black",highlightthickness=5).place(x=200,y=150,height=400,width=500)
         Frame_1=Label(Frame_Login,text="ADMIN LOGIN",bg="#FFFDD0",fg="#F99B03",font=("Helventica",35,"bold")).place(x=280,y=170)
         Frame_user=Label(Frame_Login,text="Email-id: ",bg="#FFFDD0",fg="black",font=("Arial",21,"bold")).place(x=250,y=270)
         self.user=Entry(Frame_Login,font=("Arial",15),bg="#FFFDD0",fg="black")
