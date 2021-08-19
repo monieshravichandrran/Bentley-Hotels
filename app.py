@@ -1,14 +1,18 @@
 #importing necessary python libraries
-from tkinter import*
+import tkinter as tk
 from login import Login
 from menu import Menu
 
-root=Tk()
-root.title("Bentley Hotels")
-root.iconbitmap("images/logo.png")
-root.geometry("1219x800+100+0")
-root.resizable(False, False)
-obj=Login(root)
-if obj.islog:
-    obj1=Menu(root)
-root.mainloop()
+window=tk.Tk()
+window.title("Bentley Hotels")
+window.iconbitmap("images/logo.png")
+window.geometry("1219x800+100+0")
+#window.resizable(False, False)
+window.rowconfigure(0,weight=1)
+window.columnconfigure(0,weight=1)
+Frame1=tk.Frame(window)
+obj1=Login(Frame1)
+if obj1.islog:
+    Frame2=tk.Frame(window)
+    obj2=Menu(Frame2)
+window.mainloop()
