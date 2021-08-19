@@ -14,5 +14,6 @@ Frame1=tk.Frame(window)
 obj1=Login(Frame1)
 if obj1.islog:
     Frame2=tk.Frame(window)
+    Frame2.tkraise()
     obj2=Menu(Frame2)
 window.mainloop()
