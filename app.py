@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import ttk
-from PIL import ImageTk
 from login import Login
 from menu import Menu
+from customer import Customer
+from bill import Bill
+from hotel import Hotel
 
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -16,7 +16,8 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        for F in (Login, Menu):
+        frame_list=[Login,Menu,Customer,Bill,Hotel]
+        for F in (frame_list):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
