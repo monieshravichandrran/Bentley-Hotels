@@ -1,6 +1,5 @@
 from tkinter import *
 import tkinter as tk
-from menu import Menu
 from PIL import ImageTk
 
 class Customer(tk.Frame):
@@ -33,3 +32,4 @@ class Customer_Fram:
                           font=("Helventica", 15, "bold")).place(x=180, y=430)
         else:
             B = tk.Button(parent, text=txt, width=27, height=11, bg="#FFFDD0", font=("Helventica", 15, "bold")).place(x=580, y=430)
+       
