@@ -1,5 +1,4 @@
 import tkinter as tk
-from menu import Menu
 from tkinter import messagebox
 from PIL import ImageTk
 
@@ -34,7 +33,7 @@ class LoginBox(tk.Frame):
             messagebox.showinfo(title="Success",message="Login Successful.\n Press OK to continue")
             self.password.delete(0, len(self.password.get()))
             self.user.delete(0,len(self.user.get()))
-            controller.show_frame(Menu)
+            controller.show_frame("M")
         elif self.user.get()=="abcd" and self.password.get()!="admin":
             messagebox.showerror(title="Failure",message="Incorrect Password. Forgot Paaword?")
         else:
