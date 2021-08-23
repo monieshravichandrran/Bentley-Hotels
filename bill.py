@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk
-from menu import Menu
 
 class Bill(tk.Frame):
     def __int__(self,parent,controller):
