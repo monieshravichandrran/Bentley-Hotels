@@ -1,8 +1,4 @@
 import tkinter as tk
-from customer import Customer
-from bill import Bill
-from hotel import Hotel
-from login import Login
 from PIL import ImageTk
 import time
 
@@ -24,14 +20,14 @@ class Menu(tk.Frame):
 
 class MenuBars(tk.Frame):
     def Cust(self,controller):
-        controller.show_frame(Customer)
+        controller.show_frame("C")
     def Billl(self,controller):
-        controller.show_frame(Bill)
+        controller.show_frame("B")
     def Hotell(self,controller):
-        controller.show_frame(Hotel)
+        controller.show_frame("H")
     def lgout(self,controller):
         time.sleep(0.1)
-        controller.show_frame(Login);
+        controller.show_frame("Lg")
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self,parent,bg="#FFFDD0",highlightbackground="black",highlightthickness=5)
         if txt=="Customer":
