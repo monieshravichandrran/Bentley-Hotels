@@ -19,10 +19,12 @@ class App(tk.Tk):
         self.frames = {}
         self.frame_list=[Login,Menu,Customer,Bill,Hotel]
         for F in (self.frame_list):
+            print(F)
             frame = F(container, self)
+            print(frame)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
-        self.show_frame(Login)
+        self.show_frame("Lg")
 
     def show_frame(self, cont):
         global frame_name
