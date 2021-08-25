@@ -3,7 +3,8 @@ import tkinter as tk
 from PIL import ImageTk
 
 class Customer(tk.Frame):
-    def __int__(self,parent,controller):
+    def __init__(self,parent,controller):
+        print("Init")
         tk.Frame.__init__(self,parent)
         self.grid(row=0, column=0, stick="nsew")
         self.bg = ImageTk.PhotoImage(file="images/im2.jpeg")
@@ -18,7 +19,7 @@ class Customer(tk.Frame):
         back=Customer_Fram(self,controller,"Back")
         back.place(x=570, y=420, height=300, width=350)
 
-class Customer_Fram:
+class Customer_Fram(tk.Frame):
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         if txt == "Insert":
@@ -32,4 +33,4 @@ class Customer_Fram:
                           font=("Helventica", 15, "bold")).place(x=180, y=430)
         else:
             B = tk.Button(parent, text=txt, width=27, height=11, bg="#FFFDD0", font=("Helventica", 15, "bold")).place(x=580, y=430)
-       
+        
