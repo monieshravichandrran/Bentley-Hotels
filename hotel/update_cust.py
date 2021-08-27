@@ -17,39 +17,75 @@ class upd_cust_Fram(tk.Frame):
         conn=sqlite3.connect('bentley.db')
         if type=="P":
             if text=="N":
-                c=conn.cursor()
-                c.execute('''
-                        update customer set Name=? where phone=?;
-                ''',(get_val,checker))
+                try:
+                    c=conn.cursor()
+                    c.execute('''
+                            update customer set Name=? where phone=?;
+                    ''',(get_val,checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
             elif text=="A":
-                c=conn.cursor()
-                c.execute('''
+                try:
+                    c=conn.cursor()
+                    c.execute('''
                         update customer set Name=? where phone=?;
-                ''',(get_val,checker))
+                        ''',(get_val,checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600,y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
             else:
-                c=conn.cursor()
-                c.execute('''
-                       update customer set member=? where phone=?;
-                ''',(get_val,checker))
+                try:
+                    c=conn.cursor()
+                    c.execute('''
+                        update customer set member=? where phone=?;
+                    ''',(get_val,checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
         else:
             if text=="N":
-                c=conn.cursor()
-                c.execute('''
+                try:
+                    c=conn.cursor()
+                    c.execute('''
                                 update customer set Name=? where id=?;
-                          ''',(get_val,checker))
+                            ''',(get_val,checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
             elif text=="A":
-                c=conn.cursor()
-                c.execute('''
-                                update customer set age=? where id=?;
-                          ''', (get_val, checker))
+                try:
+                    c=conn.cursor()
+                    c.execute('''
+                                    update customer set age=? where id=?;
+                             ''', (get_val, checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
             else:
-                c=conn.cursor()
-                c.execute('''
-                                update customer set member=? where id=?;
-                          ''', (get_val, checker))
+                try:
+                    c=conn.cursor()
+                    c.execute('''
+                                    update customer set member=? where id=?;
+                              ''', (get_val, checker))
+                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
+                except:
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=600, y=450)
         conn.commit()
-        conn.close()                
-                
+        conn.close()
+
     def onBackClick(self,controller):
         controller.show_frame("C")
     def onContinueClick(self,parent,type,text,checker):
@@ -91,7 +127,7 @@ class upd_cust_Fram(tk.Frame):
                 member_i.place(x=450, y=450)
                 upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('M','I',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                
+
     def onProceedClick(self,parent,text):
         if(text=="PHONE NUMBER"):
             tk.Label(parent,text="PHONE NUMBER: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=320)
