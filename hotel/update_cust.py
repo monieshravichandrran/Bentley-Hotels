@@ -16,7 +16,7 @@ class upd_cust_Fram(tk.Frame):
     def onClickUpdate(self,parent,text,type,checker,get_val):
         conn=sqlite3.connect('bentley.db')
         c=conn.cursor()
-        c.execute('select name from customer;')
+        c.execute('select phone from customer;')
         row=c.fetchall()
         print(row)
         if type=="P":
@@ -154,7 +154,7 @@ class upd_cust_Fram(tk.Frame):
             upd_drop = tk.OptionMenu(parent, clicked,"NAME", "AGE","MEMBERSHIP")
             upd_drop.place(x=410, y=370)
             cont=tk.Button(parent,text="Continue",command=lambda: self.onContinueClick(parent,"ID",clicked.get(),self.id),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="GREEN")
-            cont.place(x=540,y=420)
+            cont.place(x=550,y=370)
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         disp=tk.Label(parent,text="UPDATION", bg="#FFFDD0",fg="#F99B03",font=("Helventica",35,"bold"))
