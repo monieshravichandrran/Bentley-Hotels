@@ -7,21 +7,26 @@ c.executescript(
       create table customer( id NUMBER(6) PRIMARY KEY,
                              name TEXT,
                              age NUMBER,
-                             member TEXT,
-                             phone TEXT UNIQUE
+                             member TEXT ,
+                             phone TEXT UNIQUE,
+                             CHECK(age>=18 AND length(phone)==10
+                                   AND member IN('S','V','P') AND length(name)>0)
                            );
                            
       create table staff( id NUMBER(4) PRIMARY KEY,
                           name TEXT,
                           age NUMBER,
                           salary NUMBER(6,2),
-                          phone TEXT UNIQUE
+                          phone TEXT UNIQUE,
+                          CHECK(age>=18 AND length(phone)==10
+                                AND length(name)>0)
                         );
         
       create table restaurant( id NUMBER(3) PRIMARY KEY,
                                name TEXT UNIQUE,
                                type TEXT,
-                               price NUMBER(4,2)
+                               price NUMBER(4,2),
+                               CHECK(type in('F','B'))
                              );
                              
       insert into customer values(100001,'KL RAHUL',27,'P','9999999999');
