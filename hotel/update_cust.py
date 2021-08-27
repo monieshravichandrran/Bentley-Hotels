@@ -13,74 +13,85 @@ class Upd_cust(tk.Frame):
         upd.place(x=250,y=150,height=500,width=600)
 
 class upd_cust_Fram(tk.Frame):
+    def onClickUpdate(self,parent,text,type,get_val,checker):
+        conn=sqlite3.connect('bentley.db')
+        if type=="P":
+            if text=="N":
+                c=conn.cursor()
+                c.execute('''
+                        update customer set Name=? where phone=?;
+                ''',(get_val,checker))
+            elif text=="A":
+                c=conn.cursor()
+                c.execute('''
+                        update customer set Name=? where phone=?;
+                ''',(get_val,checker))
+            else:
+                c=conn.cursor()
+                c.execute('''
+                       update customer set member=? where phone=?;
+                ''',(get_val,checker))
+        else:
+            if text=="N":
+                c=conn.cursor()
+                c.execute('''
+                                update customer set Name=? where id=?;
+                          ''',(get_val,checker))
+            elif text=="A":
+                c=conn.cursor()
+                c.execute('''
+                                update customer set age=? where id=?;
+                          ''', (get_val, checker))
+            else:
+                c=conn.cursor()
+                c.execute('''
+                                update customer set member=? where id=?;
+                          ''', (get_val, checker))
+        conn.commit()
+        conn.close()                
+                
     def onBackClick(self,controller):
         controller.show_frame("C")
     def onContinueClick(self,parent,type,text,checker):
-        conn=sqlite3.connect('bentley.db')
         if type=="PH":
             if text=="NAME":
-                c=conn.cursor()
                 x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
                 name_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
                 name_i.place(x=450,y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),command=lambda: self.onClickUpdate('N','P',name_i.get(),checker),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                        update customer set Name=? where phone=?;
-                ''',(name_i.get(),checker))
             elif text=="AGE":
-                c=conn.cursor()
                 x=tk.Label(parent,text="AGE: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
                 age_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
                 age_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('A','P',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                        update customer set Name=? where phone=?;
-                ''',(age_i.get(),checker))
             else:
-                c=conn.cursor()
                 x=tk.Label(parent,text="MEMBERSHIP: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
                 member_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
                 member_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('M','P',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                       update customer set member=? where phone=?;
-                ''',(member_i.get(),checker))
         else:
             if text=="NAME":
-                c=conn.cursor()
                 x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
                 name_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
                 name_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('N','I',name_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                                update customer set Name=? where id=?;
-                          ''',(name_i.get(),checker))
             elif text=="AGE":
-                c = conn.cursor()
                 x = tk.Label(parent, text="AGE: ", font=("Arial", 15, "bold"), bg="#FFFDD0", fg="black").place(x=300,y=450)
                 age_i = tk.Entry(parent, font=("Arial", 15), bg="#FFFDD0", fg="black")
                 age_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('A','I',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                                update customer set age=? where id=?;
-                          ''', (age_i.get(), checker))
             else:
-                c = conn.cursor()
                 x = tk.Label(parent, text="AGE: ", font=("Arial", 15, "bold"), bg="#FFFDD0", fg="black").place(x=300,y=450)
                 member_i = tk.Entry(parent, font=("Arial", 15), bg="#FFFDD0", fg="black")
                 member_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('M','I',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
                 upd_btn.place(x=400,y=500)
-                c.execute('''
-                                update customer set member=? where id=?;
-                          ''', (member_i.get(), checker))
-        conn.commit()
-        conn.close()
+                
     def onProceedClick(self,parent,text):
         if(text=="PHONE NUMBER"):
             tk.Label(parent,text="PHONE NUMBER: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=320)
