@@ -19,7 +19,7 @@ c.executescript(
                         );
         
       create table restaurant( id NUMBER(3) PRIMARY KEY,
-                               name TEXT,
+                               name TEXT UNIQUE,
                                type TEXT,
                                price NUMBER(4,2)
                              );
