@@ -13,8 +13,12 @@ class Upd_cust(tk.Frame):
         upd.place(x=250,y=150,height=500,width=600)
 
 class upd_cust_Fram(tk.Frame):
-    def onClickUpdate(self,parent,text,type,get_val,checker):
+    def onClickUpdate(self,parent,text,type,checker,get_val):
         conn=sqlite3.connect('bentley.db')
+        c=conn.cursor()
+        c.execute('select name from customer;')
+        row=c.fetchall()
+        print(row)
         if type=="P":
             if text=="N":
                 try:
@@ -22,33 +26,33 @@ class upd_cust_Fram(tk.Frame):
                     c.execute('''
                             update customer set Name=? where phone=?;
                     ''',(get_val,checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
             elif text=="A":
                 try:
                     c=conn.cursor()
                     c.execute('''
                         update customer set Name=? where phone=?;
                         ''',(get_val,checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600,y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300,y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
             else:
                 try:
                     c=conn.cursor()
                     c.execute('''
                         update customer set member=? where phone=?;
                     ''',(get_val,checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
         else:
             if text=="N":
                 try:
@@ -56,33 +60,33 @@ class upd_cust_Fram(tk.Frame):
                     c.execute('''
                                 update customer set Name=? where id=?;
                             ''',(get_val,checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
             elif text=="A":
                 try:
                     c=conn.cursor()
                     c.execute('''
                                     update customer set age=? where id=?;
                              ''', (get_val, checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
             else:
                 try:
                     c=conn.cursor()
                     c.execute('''
                                     update customer set member=? where id=?;
                               ''', (get_val, checker))
-                    eu = tk.Label(parent, text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
                 except:
-                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
-                    eu.place(x=600, y=450)
+                    eu=tk.Label(parent,text="SPECIFIED CUSTOMER DOESNOT EXIST",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
+                    eu.place(x=300, y=540)
         conn.commit()
         conn.close()
 
@@ -91,42 +95,42 @@ class upd_cust_Fram(tk.Frame):
     def onContinueClick(self,parent,type,text,checker):
         if type=="PH":
             if text=="NAME":
-                x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
+                x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=425)
                 name_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
-                name_i.place(x=450,y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),command=lambda: self.onClickUpdate('N','P',name_i.get(),checker),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                name_i.place(x=450,y=425)
+                upd_btn=tk.Button(parent,text="UPDATE",font=("Helventica", 10, "bold"),command=lambda: self.onClickUpdate(parent,'N','P',name_i.get(),checker),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
             elif text=="AGE":
-                x=tk.Label(parent,text="AGE: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
+                x=tk.Label(parent,text="AGE: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=425)
                 age_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
-                age_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('A','P',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                age_i.place(x=450, y=425)
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate(parent,'A','P',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
             else:
-                x=tk.Label(parent,text="MEMBERSHIP: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
+                x=tk.Label(parent,text="MEMBERSHIP: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=425)
                 member_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
-                member_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('M','P',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                member_i.place(x=450, y=425)
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate(parent,'M','P',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
         else:
             if text=="NAME":
-                x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=450)
+                x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black").place(x=300,y=425)
                 name_i=tk.Entry(parent,font=("Arial", 15), bg="#FFFDD0", fg="black")
-                name_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('N','I',name_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                name_i.place(x=450, y=425)
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate(parent,'N','I',name_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
             elif text=="AGE":
                 x = tk.Label(parent, text="AGE: ", font=("Arial", 15, "bold"), bg="#FFFDD0", fg="black").place(x=300,y=450)
                 age_i = tk.Entry(parent, font=("Arial", 15), bg="#FFFDD0", fg="black")
-                age_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('A','I',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                age_i.place(x=450, y=400)
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate(parent,'A','I',age_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
             else:
                 x = tk.Label(parent, text="AGE: ", font=("Arial", 15, "bold"), bg="#FFFDD0", fg="black").place(x=300,y=450)
                 member_i = tk.Entry(parent, font=("Arial", 15), bg="#FFFDD0", fg="black")
-                member_i.place(x=450, y=450)
-                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate('M','I',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
-                upd_btn.place(x=400,y=500)
+                member_i.place(x=450, y=400)
+                upd_btn=tk.Button(parent,text="UPDATE",command=lambda: self.onClickUpdate(parent,'M','I',member_i.get(),checker),font=("Helventica", 10, "bold"),fg="white",width=7,height=1,bg="blue")
+                upd_btn.place(x=400,y=480)
 
     def onProceedClick(self,parent,text):
         if(text=="PHONE NUMBER"):
