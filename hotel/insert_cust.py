@@ -35,7 +35,7 @@ class Ins_cust_Fram(tk.Frame):
         try:
             c.execute('''
                     insert into customer values(?,?,?,?,?)
-            ''',(id,name,age,phno,member))
+            ''',(id,name,age,phno,members))
             eu = tk.Label(parent, text="INSERTION DONE SUCCESSFULLY", font=("Arial", 10, "bold"), bg="#FFFDD0",
                           fg="black")
             eu.place(x=300, y=550)
