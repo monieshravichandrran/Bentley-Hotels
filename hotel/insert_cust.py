@@ -14,7 +14,11 @@ class Ins_cust(tk.Frame):
         ins.place(x=250,y=150,height=500,width=600)
 
 class Ins_cust_Fram(tk.Frame):
-    def onBackClick(self,controller):
+    def onBackClick(self,controller,name,age,phno,member):
+        name.delete(0,len(name.get()))
+        age.delete(0,len(age.get()))
+        phno.delete(0,len(phno.get()))
+        member.delete(0,len(member.get()))
         controller.show_frame("C")
     def onClickInsert(self,parent,name,age,phno,member):
         conn=sqlite3.connect('bentley.db')
@@ -76,5 +80,5 @@ class Ins_cust_Fram(tk.Frame):
         self.member.place(x=460,y=440)
         ins_btn=tk.Button(parent, text="INSERT",fg="white",width=10,height=1,bg="blue",font=("Helventica", 15, "bold"),command=lambda: self.onClickInsert(parent,self.name.get(),self.age.get(),self.phno.get(),self.member.get()))
         ins_btn.place(x=330,y=480)
-        back=tk.Button(parent,text="BACK",fg="white",bg="red",command=lambda: self.onBackClick(controller))
+        back=tk.Button(parent,text="BACK",fg="white",bg="red",command=lambda: self.onBackClick(controller,self.name,self.age,self.phno,self.member))
         back.place(x=270,y=600)
