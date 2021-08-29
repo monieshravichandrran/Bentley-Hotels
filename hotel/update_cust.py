@@ -9,11 +9,16 @@ class Upd_cust(tk.Frame):
         self.bg = ImageTk.PhotoImage(file="images/im2.jpeg")
         self.bg_img = tk.Label(self, image=self.bg)
         self.bg_img.place(x=0, y=0, relwidth=1, relheight=1)
-        upd=upd_cust_Fram(self,controller)
-        upd.place(x=250,y=150,height=500,width=600)
+        self.upd=upd_cust_Fram(self,controller)
+        self.upd.place(x=250,y=150,height=500,width=600)
+    def reset(self,controller):
+        del self.upd
+        self.upd=upd_cust_Fram(self,controller)
+        self.upd.place(x=250,y=150,height=500,width=600)
 
 class upd_cust_Fram(tk.Frame):
     def onClickUpdate(self,parent,text,type,checker,get_val):
+        self.upd_btn['state']=DISABLED
         conn=sqlite3.connect('bentley.db')
         c=conn.cursor()
         c.execute('select phone from customer;')
@@ -90,9 +95,10 @@ class upd_cust_Fram(tk.Frame):
         conn.close()
 
     def onBackClick(self,parent,controller):
-        self.__init__(parent,controller)
+        parent.reset(controller)
         controller.show_frame("C")
     def onContinueClick(self,parent,type,text,checker):
+        self.cont['state']=DISABLED
         if type=="PH":
             if text=="NAME":
                 self.x=tk.Label(parent,text="NAME: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
@@ -139,6 +145,7 @@ class upd_cust_Fram(tk.Frame):
                 self.upd_btn.place(x=400,y=480)
 
     def onProceedClick(self,parent,text):
+        self.prcd_btn['state']=DISABLED
         if(text=="PHONE NUMBER"):
             self.vav=tk.Label(parent,text="PHONE NUMBER: ",font=("Arial",15,"bold"),bg="#FFFDD0",fg="black")
             self.vav.place(x=300,y=320)
