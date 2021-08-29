@@ -10,13 +10,19 @@ class Del_cust(tk.Frame):
         self.bg = ImageTk.PhotoImage(file="images/im2.jpeg")
         self.bg_img = tk.Label(self, image=self.bg)
         self.bg_img.place(x=0, y=0, relwidth=1, relheight=1)
-        del_cust=Del_cust_Frame(self,controller)
-        del_cust.place(x=250, y=150, height=500, width=600)
+        self.del_cust=Del_cust_Frame(self,controller)
+        self.del_cust.place(x=250, y=150, height=500, width=600)
+    def reset(self,controller):
+        del self.del_cust
+        self.del_cust=Del_cust_Frame(self,controller)
+        self.del_cust.place(x=250, y=150, height=500, width=600)
 
 class Del_cust_Frame(tk.Frame):
-    def onBackClick(self,controller):
+    def onBackClick(self,parent,controller):
+        parent.reset(controller)
         controller.show_frame("C")
     def onClickDelete(self,parent,text):
+        self.dlt_btn['state']=DISABLED
         conn=sqlite3.connect('bentley.db')
         if text=="P":
             c=conn.cursor()
@@ -47,20 +53,21 @@ class Del_cust_Frame(tk.Frame):
         conn.commit()
         conn.close()
     def onProceedClick(self,parent,text):
+        self.prcd_btn['state']=DISABLED
         if text=="PHONE NUMBER":
             a=tk.Label(parent,text="PHONE NUMBER: ",bg="#FFFDD0",font=("Arial",15,"bold"))
             a.place(x=300,y=350)
             self.phno=tk.Entry(parent,bg="#FFFDD0",font=("Arial",15,"bold"))
             self.phno.place(x=500,y=350)
-            dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"P"),fg="white",width=7,height=1,bg="blue")
-            dlt_btn.place(x=300,y=400)
+            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"P"),fg="white",width=7,height=1,bg="blue")
+            self.dlt_btn.place(x=300,y=400)
         else:
             a=tk.Label(parent,text="CUSTOMER ID: ",bg="#FFFDD0",font=("Arial",15,"bold"))
             a.place(x=300,y=350)
             self.id=tk.Entry(parent,bg="#FFFDD0",font=("Arial",15,"bold"))
             self.id.place(x=500,y=350)
-            dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"I"),fg="white",width=7,height=1,bg="blue")
-            dlt_btn.place(x=300,y=400)
+            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"I"),fg="white",width=7,height=1,bg="blue")
+            self.dlt_btn.place(x=300,y=400)
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         disp=tk.Label(parent,text="DELETION", bg="#FFFDD0",fg="#F99B03",font=("Helventica",35,"bold"))
@@ -70,7 +77,7 @@ class Del_cust_Frame(tk.Frame):
         clicked.set("PHONE NUMBER")
         del_set_drop=tk.OptionMenu(parent,clicked,"ID","PHONE NUMBER")
         del_set_drop.place(x=500,y=262)
-        prcd_btn=tk.Button(parent, text="PROCEED",fg="white",width=7,height=1,bg="brown",command=lambda: self.onProceedClick(parent,clicked.get()),font=("Helventica", 10, "bold"))
-        prcd_btn.place(x=650,y=263)
-        back=tk.Button(parent,text="BACK",fg="white",bg="red",command=lambda: self.onBackClick(controller))
+        self.prcd_btn=tk.Button(parent, text="PROCEED",fg="white",width=7,height=1,bg="brown",command=lambda: self.onProceedClick(parent,clicked.get()),font=("Helventica", 10, "bold"))
+        self.prcd_btn.place(x=650,y=263)
+        back=tk.Button(parent,text="BACK",fg="white",bg="red",command=lambda: self.onBackClick(parent,controller))
         back.place(x=270,y=600)
