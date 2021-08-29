@@ -45,7 +45,7 @@ class Del_cust_Frame(tk.Frame):
             try:
                 c.execute('''
                     delete from customer where id=?;
-                ''',(checker))
+                ''',(checker,))
                 eu = tk.Label(parent, text="DELETION DONE SUCCESSFULLY", font=("Arial", 10, "bold"), bg="#FFFDD0",
                               fg="black")
                 eu.place(x=300, y=550)
