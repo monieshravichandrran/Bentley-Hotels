@@ -21,15 +21,18 @@ class Del_cust_Frame(tk.Frame):
     def onBackClick(self,parent,controller):
         parent.reset(controller)
         controller.show_frame("C")
-    def onClickDelete(self,parent,text):
+    def onClickDelete(self,parent,text,checker):
         self.dlt_btn['state']=DISABLED
         conn=sqlite3.connect('bentley.db')
         if text=="P":
             c=conn.cursor()
+            print(type(checker))
             try:
+                print("hello")
+                print(checker)
                 c.execute('''
-                    delete  from customer where phno=?;
-                ''',(self.phno.get()))
+                    delete  from customer where phone=?;
+                ''',(checker,))
                 eu = tk.Label(parent, text="DELETION DONE SUCCESSFULLY", font=("Arial", 10, "bold"), bg="#FFFDD0",
                               fg="black")
                 eu.place(x=300, y=550)
@@ -42,7 +45,7 @@ class Del_cust_Frame(tk.Frame):
             try:
                 c.execute('''
                     delete from customer where id=?;
-                ''',(self.id.get()))
+                ''',(checker))
                 eu = tk.Label(parent, text="DELETION DONE SUCCESSFULLY", font=("Arial", 10, "bold"), bg="#FFFDD0",
                               fg="black")
                 eu.place(x=300, y=550)
@@ -59,14 +62,14 @@ class Del_cust_Frame(tk.Frame):
             a.place(x=300,y=350)
             self.phno=tk.Entry(parent,bg="#FFFDD0",font=("Arial",15,"bold"))
             self.phno.place(x=500,y=350)
-            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"P"),fg="white",width=7,height=1,bg="blue")
+            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"P",self.phno.get()),fg="white",width=7,height=1,bg="blue")
             self.dlt_btn.place(x=300,y=400)
         else:
             a=tk.Label(parent,text="CUSTOMER ID: ",bg="#FFFDD0",font=("Arial",15,"bold"))
             a.place(x=300,y=350)
             self.id=tk.Entry(parent,bg="#FFFDD0",font=("Arial",15,"bold"))
             self.id.place(x=500,y=350)
-            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"I"),fg="white",width=7,height=1,bg="blue")
+            self.dlt_btn=tk.Button(parent,text="DELETE",font=("Helventica", 10, "bold"),command=lambda: self.onClickDelete(parent,"I",int(self.id.get())),fg="white",width=7,height=1,bg="blue")
             self.dlt_btn.place(x=300,y=400)
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
