@@ -30,8 +30,8 @@ class Ins_cust_Fram(tk.Frame):
         l=t.fetchall()
         xx=conn.cursor()
         xx.execute('SELECT * FROM CUSTOMER;')
-        l=xx.fetchall()
-        print(l)
+        lx=xx.fetchall()
+        print(lx)
         membership=StringVar()
         membership.set("N")
         if member=="SUPREME":
@@ -45,7 +45,7 @@ class Ins_cust_Fram(tk.Frame):
         try:
             c.execute('''
                     insert into customer values(?,?,?,?,?);
-            ''',(id,name,age,members,phno))
+            ''',(id,name,int(age),members,phno))
             self.eu = tk.Label(parent, text="INSERTION DONE SUCCESSFULLY", font=("Arial", 10, "bold"), bg="#FFFDD0",
                           fg="black")
             self.eu.place(x=300, y=550)
