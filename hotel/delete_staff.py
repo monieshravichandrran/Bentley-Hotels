@@ -1,6 +1,3 @@
-from tkinter import *
-import tkinter as tk
-from PIL import ImageTk
 import sqlite3
 
 class Del_staff(tk.Frame):
