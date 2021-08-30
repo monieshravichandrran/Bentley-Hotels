@@ -30,11 +30,12 @@ from delete_staff import Del_staff
 from insert_rs import Ins_rs
 from update_rs import Upd_rs
 from delete_rs import Del_rs
+from package_management import Pack
 #Dictionary to keep track of the Frames with a identifier as their key
 
 frame_name={"Lg":Login,"M":Menu,"C":Customer,"B":Bill,"H":Hotel,
             "CU":Upd_cust,"CI":Ins_cust,"CD":Del_cust,"S":Staff,"R":Restaurant,
-            "SI":Ins_staff,"SU":Upd_staff,"SD":Del_staff,"RI":Ins_rs,"RU":Upd_rs,"RD":Del_rs}
+            "SI":Ins_staff,"SU":Upd_staff,"SD":Del_staff,"RI":Ins_rs,"RU":Upd_rs,"RD":Del_rs,"P":Pack}
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -44,12 +45,13 @@ class App(tk.Tk):
         self.title("Bentley Hotels")
         self.iconbitmap("images/logo.png")
         self.geometry("1219x800+100+0")
+        self.resizable(False,False)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
         self.frame_list=[Login,Menu,Customer,Bill,Hotel,Ins_cust,Upd_cust,Del_cust,Staff,Restaurant,
-                         Ins_staff,Upd_staff,Del_staff,Ins_rs,Upd_rs,Del_rs]
+                         Ins_staff,Upd_staff,Del_staff,Ins_rs,Upd_rs,Del_rs,Pack]
         for F in (self.frame_list):
             frame = F(container, self)
             self.frames[F] = frame
