@@ -14,12 +14,12 @@ c.executescript(
                            );
                            
       create table staff( id NUMBER(4) PRIMARY KEY,
-                          name TEXT,
                           age NUMBER,
+                          name TEXT,
                           salary NUMBER(6,2),
                           phone TEXT UNIQUE,
                           CHECK(age>=18 AND length(phone)==10
-                                AND length(name)>0)
+                                AND length(name)>0 AND length(salary)>0)
                         );
         
       create table restaurant( id NUMBER(3) PRIMARY KEY,
@@ -28,7 +28,11 @@ c.executescript(
                                price NUMBER(4,2),
                                CHECK(type in('F','B'))
                              );
-                             
+      create table membership(name TEXT PRIMARY KEY,
+                              food NUMBER(2,2),
+                              stay NUMBER(2,2),
+                              CHECK(length(name)>0 AND food<=100 and stay<=100)
+                            );                       
       insert into customer values(100001,'KL RAHUL',27,'P','9999999999');
       insert into customer values(100002,'NEIL WAGNER',36,'S','9999999988');
       insert into customer values(100003,'DAVID WARNER',54,'V','9999999888');
@@ -142,6 +146,10 @@ c.executescript(
       insert into restaurant values(132,'OFFICERS CHOICE','B',225);
       insert into restaurant values(133,'MCDOWELLS','B',300);
       insert into restaurant values(134,'BLENDERS','B',350);
+      
+      insert into membership values('VIP',10,15);
+      insert into membership values('PRIME',10,25);
+      insert into membership values('SUPREME',20,35);
     '''
 )
 conn.commit()
