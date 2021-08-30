@@ -29,6 +29,8 @@ class Hotel_Fram(tk.Frame):
         contoller.show_frame("S")
     def onClickRes(self,controller):
         controller.show_frame("R")
+    def onClickPack(self,controller):
+        controller.show_frame("P")
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         if txt == "Staff":
@@ -39,6 +41,6 @@ class Hotel_Fram(tk.Frame):
                           font=("Helventica", 15, "bold"),command=lambda: self.onClickRes(controller)).place(x=580, y=80)
         elif txt == "Package":
             B = tk.Button(parent, text=txt + "\nManagement", width=27, height=11, bg="#FFFDD0",
-                          font=("Helventica", 15, "bold")).place(x=180, y=430)
+                          font=("Helventica", 15, "bold"),command=lambda: self.onClickPack(controller)).place(x=180, y=430)
         else:
             B = tk.Button(parent, text=txt, width=27, height=11, bg="#FFFDD0", font=("Helventica", 15, "bold"),command=lambda:self.htbackclick(controller)).place(x=580, y=430)
