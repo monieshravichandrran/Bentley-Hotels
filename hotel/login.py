@@ -28,15 +28,14 @@ class LoginBox(tk.Frame):
         Frame_pass=tk.Label(parent,text="Password: ",bg="#FFFDD0",fg="black",font=("Arial",19,"bold")).place(x=250,y=330)
         self.password=tk.Entry(parent,font=("Arial",15),bg="#FFFDD0",fg="black",show="*")
         self.password.place(x=400,y=335,width=250)
-        Frame_submit=tk.Button(parent,text="LOGIN",command= lambda: self.onClickLogin(controller) ,font=("Helventica",15),bg="blue",fg="white",width=10,height=1)
+        Frame_submit=tk.Button(parent,text="LOGIN",command= lambda: self.onClickLogin(parent,controller) ,font=("Helventica",15),bg="blue",fg="white",width=10,height=1)
         Frame_submit.place(x=250,y=380)
-        Frame_forgot=tk.Label(parent,text="Forgot Password?",bg="#FFFDD0",fg="red",font=("Time New Roman",15)).place(x=250,y=475)
+        Frame_forgot=tk.Label(parent,text="WELCOME TO BENTLEY HOTELS \nLOGIN TO CONTINUE!!!",bg="#FFFDD0",fg="red",font=("Time New Roman",15)).place(x=250,y=460)
 
-    def onClickLogin(self,controller):
+    def onClickLogin(self,parent,controller):
         if self.user.get()=="abcd" and self.password.get()=="admin":
             messagebox.showinfo(title="Success",message="Login Successful.\n Press OK to continue")
-            self.password.delete(0, len(self.password.get()))
-            self.user.delete(0,len(self.user.get()))
+            self.__init__(parent,controller)
             controller.show_frame("M")
         elif self.user.get()=="abcd" and self.password.get()!="admin":
             messagebox.showerror(title="Failure",message="Incorrect Password. Forgot Paaword?")
