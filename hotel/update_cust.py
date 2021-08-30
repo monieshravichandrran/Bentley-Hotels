@@ -64,7 +64,7 @@ class upd_cust_Fram(tk.Frame):
                     self.eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
                     self.eu.place(x=300,y=540)
                 except:
-                    if int(checker)<18:
+                    if checker<18:
                         txtt.set("UPDATION FAILED!!! INVALID AGE ENTERED")
                     self.eu = tk.Label(parent, text=txtt.get(), font=("Arial", 10, "bold"), bg="#FFFDD0",
                                            fg="black")
@@ -86,7 +86,10 @@ class upd_cust_Fram(tk.Frame):
         else:
             ch=conn.cursor()
             ch.execute('select id from customer;')
-            rs=ch.fetchall()
+            rs1=ch.fetchall()
+            rs=list()
+            for i in rs1:
+                rs.append(i[0])
             if int(get_val) not in rs:
                 self.eu = tk.Label(parent, text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial", 10, "bold"), bg="#FFFDD0", fg="black")
                 self.eu.place(x=300, y=540)
@@ -113,7 +116,7 @@ class upd_cust_Fram(tk.Frame):
                     self.eu = tk.Label(parent, text="UPDATION DONE SUCCESSFULLY",font=("Arial",10,"bold"),bg="#FFFDD0",fg="black")
                     self.eu.place(x=300, y=540)
                 except:
-                    if int(checker)<18:
+                    if checker<18:
                         txtt.set("UPDATION FAILED!!! INVALID AGE ENTERED")
                     self.eu = tk.Label(parent, text=txtt.get(), font=("Arial", 10, "bold"), bg="#FFFDD0",
                                            fg="black")
