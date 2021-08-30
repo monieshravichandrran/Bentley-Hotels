@@ -17,7 +17,7 @@ class Hotel(tk.Frame):
         ht_staff.place(x=170, y=70, height=300, width=350)
         ht_food_bev=Hotel_Fram(self,controller,"Food & Beverage")
         ht_food_bev.place(x=570, y=70, height=300, width=350)
-        ht_admin=Hotel_Fram(self,controller,"Admin")
+        ht_admin=Hotel_Fram(self,controller,"Package")
         ht_admin.place(x=170, y=420, height=300, width=350)
         ht_back=Hotel_Fram(self,controller,"Back")
         ht_back.place(x=570, y=420, height=300, width=350)
@@ -25,15 +25,19 @@ class Hotel(tk.Frame):
 class Hotel_Fram(tk.Frame):
     def htbackclick(self,controller):
         controller.show_frame("M")
+    def onClickStaff(self,contoller):
+        contoller.show_frame("S")
+    def onClickRes(self,controller):
+        controller.show_frame("R")
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         if txt == "Staff":
             B = tk.Button(parent, text=txt + "\nManagement", width=27, height=11, bg="#FFFDD0",
-                          font=("Helventica", 15, "bold")).place(x=180, y=80)
+                          font=("Helventica", 15, "bold"),command=lambda:self.onClickStaff(controller)).place(x=180, y=80)
         elif txt == "Food & Beverage":
-            B = tk.Button(parent, text=txt + "\nManagement", width=27, height=11, bg="#FFFDD0",
-                          font=("Helventica", 15, "bold")).place(x=580, y=80)
-        elif txt == "Admin":
+            B = tk.Button(parent, text="Restaurant" + "\nManagement", width=27, height=11, bg="#FFFDD0",
+                          font=("Helventica", 15, "bold"),command=lambda: self.onClickRes(controller)).place(x=580, y=80)
+        elif txt == "Package":
             B = tk.Button(parent, text=txt + "\nManagement", width=27, height=11, bg="#FFFDD0",
                           font=("Helventica", 15, "bold")).place(x=180, y=430)
         else:
