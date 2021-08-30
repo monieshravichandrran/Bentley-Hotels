@@ -28,10 +28,6 @@ class Ins_cust_Fram(tk.Frame):
         t=conn.cursor()
         t.execute('SELECT max(id) FROM CUSTOMER;')
         l=t.fetchall()
-        xx=conn.cursor()
-        xx.execute('SELECT * FROM CUSTOMER;')
-        lx=xx.fetchall()
-        print(lx)
         membership=StringVar()
         membership.set("N")
         if member=="SUPREME":
