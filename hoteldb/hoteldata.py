@@ -19,14 +19,16 @@ c.executescript(
                           salary NUMBER(6,2),
                           phone TEXT UNIQUE,
                           CHECK(age>=18 AND length(phone)==10
-                                AND length(name)>0 AND length(salary)>0)
+                                AND length(name)>0 AND length(salary)>0
+                                AND length(age)>0)
                         );
         
       create table restaurant( id NUMBER(3) PRIMARY KEY,
                                name TEXT UNIQUE,
                                type TEXT,
                                price NUMBER(4,2),
-                               CHECK(type in('F','B'))
+                               CHECK(type in('F','B') AND length(name)>0
+                               AND length(price)>0)
                              );
       create table membership(name TEXT PRIMARY KEY,
                               food NUMBER(2,2),
