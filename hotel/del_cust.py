@@ -25,11 +25,18 @@ class Del_cust_Frame(tk.Frame):
         self.dlt_btn['state']=DISABLED
         conn=sqlite3.connect('bentley.db')
         if text=="P":
+            ch=conn.cursor()
+            ch.execute('select phone from customer;')
+            rs1=ch.fetchall()
+            rs=list()
+            for i in rs1:
+                rs.append(i[0])
+            if checker not in rs:
+                self.eu = tk.Label(parent, text="SPECIFIED PHONE NUMBER DOESNOT EXIST",font=("Arial", 10, "bold"), bg="#FFFDD0", fg="black")
+                self.eu.place(x=300, y=540)
+                return
             c=conn.cursor()
-            print(type(checker))
             try:
-                print("hello")
-                print(checker)
                 c.execute('''
                     delete  from customer where phone=?;
                 ''',(checker,))
@@ -41,6 +48,16 @@ class Del_cust_Frame(tk.Frame):
                               fg="black")
                 eu.place(x=300, y=550)
         else:
+            ch=conn.cursor()
+            ch.execute('select id from customer;')
+            rs1=ch.fetchall()
+            rs=list()
+            for i in rs1:
+                rs.append(i[0])
+            if checker not in rs:
+                self.eu = tk.Label(parent, text="SPECIFIED CUSTOMER ID DOESNOT EXIST",font=("Arial", 10, "bold"), bg="#FFFDD0", fg="black")
+                self.eu.place(x=300, y=540)
+                return
             c=conn.cursor()
             try:
                 c.execute('''
