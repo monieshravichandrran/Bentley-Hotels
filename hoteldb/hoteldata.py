@@ -1,3 +1,4 @@
+#CREATING OUR DATABASE
 import sqlite3
 conn=sqlite3.connect('bentley.db')
 c=conn.cursor()
