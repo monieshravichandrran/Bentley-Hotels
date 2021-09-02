@@ -32,11 +32,18 @@ from update_rs import Upd_rs
 from delete_rs import Del_rs
 from package_management import Pack
 from restaurantbill import Restaurant_Bill
+from cust_view import View_cust
+from view_staff import View_staff
+from package_tarrif import View_pack
+from view_res import View_res
+from security import Security
 #Dictionary to keep track of the Frames with a identifier as their key
 
 frame_name={"Lg":Login,"M":Menu,"C":Customer,"B":Bill,"H":Hotel,
-            "CU":Upd_cust,"CI":Ins_cust,"CD":Del_cust,"S":Staff,"R":Restaurant,
-            "SI":Ins_staff,"SU":Upd_staff,"SD":Del_staff,"RI":Ins_rs,"RU":Upd_rs,"RD":Del_rs,"P":Pack,"FB":Restaurant_Bill}
+            "CU":Upd_cust,"CI":Ins_cust,"CD":Del_cust,"S":Staff,
+            "R":Restaurant,"SI":Ins_staff,"SU":Upd_staff,"SD":Del_staff,
+            "RI":Ins_rs,"RU":Upd_rs,"RD":Del_rs,"P":Pack,"FB":Restaurant_Bill,
+            "CV":View_cust,"SV":View_staff,"PT":View_pack,"RV":View_res,"SEC":Security}
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -52,7 +59,8 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
         self.frame_list=[Login,Menu,Customer,Bill,Hotel,Ins_cust,Upd_cust,Del_cust,Staff,Restaurant,
-                         Ins_staff,Upd_staff,Del_staff,Ins_rs,Upd_rs,Del_rs,Pack,Restaurant_Bill]
+                         Ins_staff,Upd_staff,Del_staff,Ins_rs,Upd_rs,Del_rs,Pack,Restaurant_Bill,View_cust
+                         ,View_staff,View_pack,View_res,Security]
         for F in (self.frame_list):
             frame = F(container, self)
             self.frames[F] = frame
