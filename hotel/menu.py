@@ -19,8 +19,8 @@ class Menu(tk.Frame):
         emp.place(x=570,y=70,height=300,width=350)
         Bill=MenuBars(self,controller,"Hotel")
         Bill.place(x=170,y=420,height=300,width=350)
-        logout=MenuBars(self,controller,"Logout")
-        logout.place(x=570,y=420,height=300,width=350)
+        security=MenuBars(self,controller,"Security")
+        security.place(x=570,y=420,height=300,width=350)
 
 class MenuBars(tk.Frame):
     def Cust(self,controller):
@@ -32,6 +32,8 @@ class MenuBars(tk.Frame):
     def lgout(self,controller):
         time.sleep(0.15)
         controller.show_frame("Lg")
+    def security(self,controller):
+        controller.show_frame("SEC")
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self,parent,bg="#FFFDD0",highlightbackground="black",highlightthickness=5)
         if txt=="Customer":
@@ -40,5 +42,8 @@ class MenuBars(tk.Frame):
             B=tk.Button(parent,text=txt+"\nCalcuator",width=27,height=11,bg="#FFFDD0",font=("Helventica",15,"bold"),command=lambda:self.Billl(controller)).place(x=580,y=80)
         elif txt=="Hotel":
             B=tk.Button(parent,text=txt+"\nManagement",width=27,height=11,bg="#FFFDD0",font=("Helventica",15,"bold"),command=lambda:self.Hotell(controller)).place(x=180,y=430)
-        else:
-            B=tk.Button(parent,text=txt,width=27,height=11,bg="#FFFDD0",font=("Helventica",15,"bold"),command=lambda:self.lgout(controller)).place(x=580,y=430)
+        elif txt=="Security":
+            B=tk.Button(parent,text=txt,width=27,height=11,bg="#FFFDD0",font=("Helventica",15,"bold"),command=lambda:self.security(controller)).place(x=580,y=430)
+        logout = tk.Button(parent, text="Logout", fg="white", bg="red", width=8,height=2,
+                             command=lambda: self.lgout(controller))
+        logout.place(x=100, y=750)
