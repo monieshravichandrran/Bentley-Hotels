@@ -1,3 +1,6 @@
+'''
+DELETE CUSTOMER PAGE
+'''
 import sqlite3
 from tkinter import *
 import tkinter as tk
