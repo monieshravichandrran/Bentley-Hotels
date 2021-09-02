@@ -19,8 +19,8 @@ class Customer(tk.Frame):
         upd_custom.place(x=570, y=70, height=300, width=350)
         del_custom=Customer_Fram(self,controller,"Delete")
         del_custom.place(x=170, y=420, height=300, width=350)
-        back=Customer_Fram(self,controller,"Back")
-        back.place(x=570, y=420, height=300, width=350)
+        view_custom=Customer_Fram(self,controller,"View")
+        view_custom.place(x=570, y=420, height=300, width=350)
 
 class Customer_Fram(tk.Frame):
     def ctbackclick(self,controller):
@@ -31,6 +31,8 @@ class Customer_Fram(tk.Frame):
         controller.show_frame("CI")
     def ctdelclick(self,controller):
         controller.show_frame("CD")
+    def ctviewclick(self,controller):
+        controller.show_frame("CV")
     def __init__(self,parent,controller,txt):
         tk.Frame.__init__(self, parent, bg="#FFFDD0", highlightbackground="black", highlightthickness=5)
         if txt == "Insert":
@@ -42,5 +44,9 @@ class Customer_Fram(tk.Frame):
         elif txt == "Delete":
             B = tk.Button(parent, text=txt + "\nCustomer", width=27, height=11, bg="#FFFDD0",
                           font=("Helventica", 15, "bold"),command=lambda: self.ctdelclick(controller)).place(x=180, y=430)
-        else:
-            B = tk.Button(parent, text=txt, width=27, height=11, bg="#FFFDD0", font=("Helventica", 15, "bold"),command=lambda: self.ctbackclick(controller)).place(x=580, y=430)
+        elif txt=="View":
+            B=tk.Button(parent, text=txt+"\nCustomer", width=27,height=11,bg="#FFFDD0",font=("Helevntica",15,"bold"),
+                        command=lambda: self.ctviewclick(controller)).place(x=580,y=430)
+        back = tk.Button(parent, text="BACK", fg="white", bg="red", width=8,height=2,
+                             command=lambda: self.ctbackclick(controller))
+        back.place(x=100, y=750)
