@@ -1,9 +1,9 @@
-#CREATING THE DATABASE
 import sqlite3
 conn=sqlite3.connect('bentley.db')
 c=conn.cursor()
 c.executescript(
     '''
+
       create table customer( id NUMBER(6) PRIMARY KEY,
                              name TEXT,
                              age NUMBER,
@@ -34,7 +34,12 @@ c.executescript(
                               food NUMBER(2,2),
                               stay NUMBER(2,2),
                               CHECK(length(name)>0 AND food<=100 and stay<=100)
-                            );                       
+                            );
+      create table admin(username text,
+                         password text,
+                         CHECK(length(username)>0 AND length(password)>0)
+                       );
+                                                   
       insert into customer values(100001,'KL RAHUL',27,'P','9999999999');
       insert into customer values(100002,'NEIL WAGNER',36,'S','9999999988');
       insert into customer values(100003,'DAVID WARNER',54,'V','9999999888');
@@ -152,6 +157,9 @@ c.executescript(
       insert into membership values('VIP',10,15);
       insert into membership values('PRIME',10,25);
       insert into membership values('SUPREME',20,35);
+      
+      insert into admin values("bentley","admin");
+      
     '''
 )
 conn.commit()
