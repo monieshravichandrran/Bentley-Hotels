@@ -1,3 +1,6 @@
+'''
+DELETE RESTAURANT ITEM PAGE
+'''
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk
